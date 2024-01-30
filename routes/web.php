@@ -1,18 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DocumentImportController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::redirect('/', '/import');
+Route::get('/import', [DocumentImportController::class, 'importView'])->name('document.import.view');
+Route::post('/import', [DocumentImportController::class, 'import'])->name('document.import');
+Route::get('/process-queue', [DocumentImportController::class, 'processQueueView'])->name('process.queue.view');
+Route::post('/process-queue', [DocumentImportController::class, 'processQueue'])->name('process.queue');
 
-Route::get('/', function () {
-    return view('welcome');
-});

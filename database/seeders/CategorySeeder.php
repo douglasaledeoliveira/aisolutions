@@ -12,11 +12,16 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('categories')->insert([
-            'name' => 'Remessa Parcial'
-        ]);
-        DB::table('categories')->insert([
-            'name' => 'Remessa'
-        ]);
+        $categories = [
+            ['category_title' => 'Remessa Parcial'],
+            ['category_title' => 'Remessa'],
+        ];
+
+        foreach ($categories as $category) {
+            DB::table('categories')->updateOrInsert(
+                ['category_title' => $category['category_title']],
+                $category
+            );
+        }
     }
 }
